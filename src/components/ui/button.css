@@ -1,0 +1,17 @@
+.btn {
+  padding: 15 px;
+  border: 0 px;
+  outline: none;
+  background-color: #bcbcbc;
+}
+.btn.danger {
+  background-color: crimson;
+  color: #fff;
+}
+.btn.warning {
+  background-color: tomato;
+  color: white;
+}
+.btn.default {
+  background-color: #eee;
+}
