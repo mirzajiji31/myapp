@@ -1,12 +1,23 @@
 import "./button.css";
-function Button({type,text,onClick}) {
+
+function Button({
+  type = "none",
+  text = "default text",
+  onClick,
+  className = "",
+}) {
   if (type === "none") {
     return null;
   }
+
   return (
-    <button className={`btn ${type} mx-1`} onClick={onClick}>
+    <button
+      className={["btn", "mx-1", type, className].join(" ")}
+      onClick={onClick}
+    >
       {text}
     </button>
   );
 }
+
 export default Button;

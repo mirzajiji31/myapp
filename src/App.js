@@ -1,51 +1,29 @@
-import Welcome from "./components/welcome";
-import HomePage from "./pages/home";
-import TodoHome from "./pages/todo";
-import Counter from "./pages/counter";
+import { Route, Switch } from 'react-router';
 
-import Navigation from "./components/navigation";
-import "./App.css";
+import Profile from './pages/profile';
+import AuthPage from './pages/auth';
 
-import { useState } from "react";
-import { object } from "prop-types";
+import Navigation from './components/navigation';
+import Theme from './components/theme';
+
+import './App.css';
 
 function App() {
-  const [page, setPage] = useState({
-    homePage: true,
-    todoHome: false,
-    counter: false,
-  });
-
-  const onPageChange = (pageKey) => {
-    const updatePages = { ...page };
-    // Object.keys(page).forEach((key) => {
-    //   if (key === pageKey) {
-    //     updatePages[pageKey] = true;
-    //   } else {
-    //     updatePages[key] = false;
-    //   }
-    // });
-
-    for (let key of Object.keys(updatePages)) {
-      if (key === pageKey) {
-        updatePages[pageKey] = true;
-      } else {
-        updatePages[key] = false;
-      }
-    }
-
-    setPage(updatePages);
-  };
-
   return (
     <div className="container">
-      {/* <Welcome /> */}
-      <Navigation onPageChange={onPageChange} pages={page} />
+      <Navigation />
       <hr />
+      <Theme>
+        <Switch>
+          <Route path="/profile">
+            <Profile title="Auth Protected profile page" />
+          </Route>
 
-      {page.homePage && <HomePage />}
-      {page.todoHome && <TodoHome />}
-      {page.counter && <Counter />}
+          <Route path="/auth">
+            <AuthPage />
+          </Route>
+        </Switch>
+      </Theme>
     </div>
   );
 }

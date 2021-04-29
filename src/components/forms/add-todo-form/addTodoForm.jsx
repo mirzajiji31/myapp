@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useContext } from 'react';
 
-function AddTodoForm({ onAddTodo }) {
-  const [title, setTitle] = useState("");
+import { TodoProvider } from '../../../providers/TodoProvider';
+
+function AddTodoForm(props) {
+  const { onAddTodo } = useContext(TodoProvider);
+
+  const [title, setTitle] = useState('');
   const [completed, setCompleted] = useState(false);
-
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log("form submit");
-    onAddTodo({ title, completed, id: Math.random().toString() });
-    setTitle("");
+    console.log('FORM SUBMIT');
+    onAddTodo({
+      title,
+      completed,
+      id: Math.random().toString(),
+    });
+    setTitle('');
     setCompleted(false);
   };
 
@@ -16,7 +23,7 @@ function AddTodoForm({ onAddTodo }) {
     <form onSubmit={onSubmit}>
       <div className="mb-3">
         <label htmlFor="todoTitle" className="form-label">
-          Email address
+          Todo Title - {title}
         </label>
         <input
           type="text"
@@ -24,7 +31,9 @@ function AddTodoForm({ onAddTodo }) {
           id="todoTitle"
           required
           value={title}
-          onChange={({ target }) => setTitle(target.value)}
+          onChange={({ target }) => {
+            setTitle(target.value);
+          }}
         />
       </div>
 
@@ -33,8 +42,8 @@ function AddTodoForm({ onAddTodo }) {
           type="checkbox"
           className="form-check-input"
           id="completed"
-          defaultChecked={completed}
           value="completed"
+          defaultChecked={completed}
           onClick={({ target }) => {
             setCompleted(target.checked);
           }}
@@ -43,11 +52,11 @@ function AddTodoForm({ onAddTodo }) {
           Completed
         </label>
       </div>
-
       <button type="submit" className="btn btn-primary">
         Submit
       </button>
     </form>
   );
 }
+
 export default AddTodoForm;

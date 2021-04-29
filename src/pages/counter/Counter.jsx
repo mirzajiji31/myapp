@@ -2,24 +2,25 @@ import React from "react";
 
 class Counter extends React.Component {
   state = {
-    title: "Loading ...",
+    title: "Loading...",
     count: 0,
   };
+
   componentDidMount() {
-    // console.log("counter mounter");
-    //for ajax calls
-    setTimeout(() => {
+    // throw new SyntaxError("Counter exception");
+    // AJAX calls
+    this.timerId = setTimeout(() => {
       this.setState({
         ...this.state,
         title: "Counter Page",
       });
     }, 2000);
-
-    document.body.style.backgroundColor = "#dfe4ea";
+    // document.body.style.backgroundColor = "#1B9CFC";
   }
 
   componentWillUnmount() {
-    document.body.style.backgroundColor = "white";
+    // document.body.style.backgroundColor = "white";
+    clearTimeout(this.timerId);
   }
 
   onPlus = () => {
@@ -30,6 +31,7 @@ class Counter extends React.Component {
       };
     });
   };
+
   onReset = () => {
     this.setState({
       ...this.state,
@@ -50,7 +52,6 @@ class Counter extends React.Component {
     const { title, count } = this.state;
     return (
       <div className="row">
-        {/* <h2>{this.state.title}</h2> */}
         <h2 className="text-muted">
           {title} - {count}
         </h2>

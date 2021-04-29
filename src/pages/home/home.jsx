@@ -1,36 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+
 function HomePage(props) {
-  const [value, setValue] = useState("");
-  const [message, setMessage] = useState("");
+  const [value, setValue] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-    // console.log("only one");
+    // console.log("ერთჯერადი");
   }, []);
+
   useEffect(() => {
-    // console.log("always");
+    // console.log("ყოველთვის");
   });
+
   useEffect(() => {
-    // console.log("value ");
+    // console.info("მნიშვნელობის შეცვლილსას");
+    setMessage(value);
   }, [value]);
 
   return (
     <div className="row">
       <button
         className="btn btn-primary"
-        onClick={() => setValue(Math.random().toString())}
-      >
-        change value
+        onClick={() => setValue(Math.random().toString())}>
+        Change Value
       </button>
       <button
         className="btn btn-info mt-2"
-        onClick={() => setMessage(Math.random().toString())}
-      >
-        change message
+        onClick={() => setMessage(Math.random().toString())}>
+        Change Message
       </button>
       <h2>Home Page</h2>
-      <h4>value : {value}</h4>
-      <h4>message : {message}</h4>
+      <h4>Value - {value}</h4>
+      <h4>Message - {message}</h4>
     </div>
   );
 }
+
 export default HomePage;
