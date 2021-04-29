@@ -2,7 +2,7 @@
   padding: 15 px;
   border: 0 px;
   outline: none;
-  background-color: #bcbcbc;
+  /* background-color: #bcbcbc; */
 }
 .btn.danger {
   background-color: crimson;
